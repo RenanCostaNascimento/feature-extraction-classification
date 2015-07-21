@@ -1,0 +1,17 @@
+%function emotion = extractEmotion(fileName)
+    fileName = '03a02Nc';
+    expression = '[A-Z]';
+    emotionLetter = regexp(fileName, expression, 'match');
+    emotionLetter = emotionLetter{1,1};
+    
+    switch emotionLetter
+        case 'W'
+            disp('negative one')
+        case 'L'
+            disp('zero')
+        case E
+            disp('positive one')
+            
+        otherwise
+            disp('other value')
+    end
