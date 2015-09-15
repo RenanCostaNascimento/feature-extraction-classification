@@ -6,8 +6,8 @@
 % "winsize" and the windows are spaced "wininc" apart.
 % Inputs
 % ------
-%    x: 		columns of signals
-%    winsize:	window size (length of x)
+%    signal: 	columns of signals
+%    winsize:	window size (length of signal)
 %    wininc:	spacing of the windows (winsize)
 %    SF:        sampling frequency (Not used in the current implementation, but I left you some options down there)
 % Outputs
@@ -34,11 +34,11 @@
 % last modified 29/08/2012
 % last modified 09/02/2013
 
-function feat = getmswtfeat(x, winsize, wininc, levels)
+function feat = getmswtfeat(signal, winsize, wininc, levels, wavelet)
 
 datawin = ones(winsize,1);
-datasize = size(x,1);
-Nsignals = size(x,2);
+datasize = size(signal,1);
+Nsignals = size(signal,2);
 
 %% Chop the signal according to a sliding window approach
 numwin = floor((datasize - winsize)/wininc)+1;
@@ -47,7 +47,7 @@ feat = zeros(winsize,numwin);
 st = 1;
 en = winsize;
 for i = 1:numwin
-    curwin = x(st:en,:).*repmat(datawin,1,Nsignals);
+    curwin = signal(st:en,:).*repmat(datawin,1,Nsignals);
     feat(1:winsize,i) = detrend(curwin);
     
     st = st + wininc;
@@ -60,7 +60,7 @@ J=levels;% Number of decomposition levels which can also be set using
 % or J=wmaxlev(winsize,'Sym5');
 %J=(log(SF/2)/log(2))-1;
 %% Multisignal one-dimensional wavelet transform decomposition
-dec = mdwtdec('col',feat,J,'db4');
+dec = mdwtdec('col',feat,J, wavelet);
 % Proceed with Multisignal 1-D decomposition energy distribution
 
 if isequal(dec.dirDec,'c')

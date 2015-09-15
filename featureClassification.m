@@ -1,4 +1,4 @@
-load emotionTraining
+load bior1.5-20levels.mat
 
 %gscatter(features(:,1), features(:,end), emotions,'rgb','osd');
 %xlabel('Energy');
