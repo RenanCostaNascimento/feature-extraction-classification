@@ -1,8 +1,8 @@
 %wavelet transform levels
 levels = [5 10 15 20];
 %wavelet families
-%haar abd bior3.1 at beyond 10 levels throws and exception
-wavelets = {'haar', 'db2', 'db4', 'db6', 'db8', 'db10', 'bior1.5', 'bior2.8', 'bior3.1', 'bior3.9', 'bior6.8', 'coif1', 'coif5'};
+%haar abd bior3.1 at beyond 10 le
+wavelets = {'db2', 'db4', 'db6', 'db8', 'db10', 'bior1.5', 'bior2.8', 'bior3.1', 'bior3.9', 'bior6.8', 'coif1', 'coif5'};
 
 %quantity of levels and wavelets
 levelQuantity = numel(levels);
